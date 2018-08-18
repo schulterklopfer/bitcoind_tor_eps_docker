@@ -1,0 +1,9 @@
+# general opts
+#printtoconsole=1
+# you should change this here and in electrumPS/config.cfg
+rpcpassword = %RPCPASSWORD%
+rpcuser = %RPCUSER%
+
+# tor
+proxy=127.0.0.1:9050
+listen=1

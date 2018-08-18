@@ -1,0 +1,63 @@
+version: '2.0'
+services:
+  openvpn:
+    image: openvpn:latest
+    # assign static ip to openvpn so we
+    # can use it later in the electrum
+    # personal server whitelist
+    networks:
+      local_network:
+        ipv4_address: 10.11.12.11
+    # always restart after container died
+    restart: always
+    # give docker the capabilities to
+    # manipulate container network settings
+    # like iptables
+    cap_add:
+      - NET_ADMIN
+    ports:
+      # forward container udp port 1194 to port 1194 on host so
+      # VPN client can connect
+      - 1194:1194/udp
+    volumes:
+      - ${DEPS_BASE}/volumes/openvpn:/etc/openvpn
+    links:
+      - bitcoin
+  bitcoin:
+    image: bitcoind:latest
+    # assign static ip to bitcoind to
+    # prevent static ip collisions
+    networks:
+      local_network:
+        ipv4_address: 10.11.12.12
+    # always restart after container died
+    restart: always
+    ports:
+      # forward container port 8333 to port 8333 on host
+      - 8333:8333
+    volumes:
+      # mount the volume containing bitcoin.conf and the blockchain data
+      # on the host to /bitcoin/.bitcoin in the container
+      - ${DEPS_BASE}/volumes/bitcoind:/bitcoin/.bitcoin
+  electrumPS:
+    depends_on:
+      - bitcoin
+    image: eps:latest
+    # assign static ip to electrumPS so we
+    # can use it in the electrum wallet
+    # as a server address
+    networks:
+      local_network:
+        ipv4_address: 10.11.12.13
+    # always restart after container died
+    restart: always
+    volumes:
+      - ${DEPS_BASE}/volumes/electrumPS/config.cfg:/eps/config.cfg
+networks:
+  # create local network with certain ip range
+  # so we can forward it through the VPN
+  local_network:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 10.11.12.0/24

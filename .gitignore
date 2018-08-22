@@ -1,4 +1,12 @@
 rpcuser
 rpcpassword
 xpub
+electrum.ovpn
 .setupState
+volumes/bitcoind/*
+volumes/electrumPS/*
+volumes/openvpn/*
+
+!volumes/bitcoind/bitcoin.conf.sample
+!volumes/electrumPS/config.cfg.sample
+!volumes/openvpn/.gitkeep

@@ -25,7 +25,7 @@ docker-compose for your OS.
 
 ### Supported
 
-The scripts should run on every *nix like system with a shell and the `docker` and 
+The scripts should run on every  \*nix like system with a shell and the `docker` and 
 `docker-compose` command in your `$PATH`.
 
 ### Tested
@@ -56,6 +56,9 @@ configure your router which connects you to the internet and install a so called
 
 The IP will be whatever IP your machine has inside the local area network. 
 The port needs to be 1194 and the type of the port must be UDP.
+
+If you want to make your full node accessible to other full nodes on the bitcoin
+network, you will need to do the same thing for the TCP port 8333.
 
 You don't have to do this, if you are running this docker-compose on a hosted server.
 

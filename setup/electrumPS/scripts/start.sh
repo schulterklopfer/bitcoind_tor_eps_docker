@@ -31,9 +31,11 @@ fi
 if [ ${setupState} -eq 4 ]; then
 
     # start setup
-    BACKTITLE="Configure Bitcoind"
+    BACKTITLE="Configure electrum personal server"
     TITLE="Generate config"
-    MENU="Whats happening? Description here"
+    MENU="Lets give electrum personal server a master public key to monitor your \
+addresses. If you are using the electrum wallet, you will find this key in the \
+menu under 'wallet > information'.\n"
     OPTIONS+=("Generate config" "Generate config for electrum personal server")   
 
 
@@ -42,11 +44,11 @@ elif [ ${setupState} -gt 4 ]; then
     # continue setup
     BACKTITLE="Configuration done"
     TITLE="Cool cool"
-    MENU="All is cool, file is there and there"
+    MENU="Electrum personal server config was (already) generated. If you want to change the \
+master public key, just restart this configuration process.\n\n"
     OPTIONS+=("Exit" "Everything is configured. Exit.")   
+    OPTIONS+=(Restart "Restart electrum personal server configuration")   
 fi
-
-OPTIONS+=(Restart "Clear everything and restart the process")   
 
  
 CHOICE=$(dialog --clear \

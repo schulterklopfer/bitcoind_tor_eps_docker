@@ -25,8 +25,8 @@ docker-compose for your OS.
 
 ### Supported
 
-This setup should run on every *nix like system with a shell and the `docker` and 
-`docker-compose` command in your `$PATH`. 
+The scripts should run on every *nix like system with a shell and the `docker` and 
+`docker-compose` command in your `$PATH`.
 
 ### Tested
 
@@ -49,15 +49,15 @@ is finished.
 For connecting to your brand new OpenVPN you need to import the configuration file
 `electrum.ovpn` created in the previous setup step into your OpenVPN client of your choice.
 
-In case you are running this setup on a machine at home in your local area network
+In case you are installing this on a machine at home in your local area network
 and you want to connect your laptop or mobile device from outside, you need to 
 configure your router which connects you to the internet and install a so called
-port forward from the machine running this setup out into the internet.
+"port forward" from the machine everything is installed on out into the internet.
 
-The IP will be whatever IP your machine running this setup has inside the local area network. 
+The IP will be whatever IP your machine has inside the local area network. 
 The port needs to be 1194 and the type of the port must be UDP.
 
-You don't have to do this, if you are running this setup on a hosted server.
+You don't have to do this, if you are running this docker-compose on a hosted server.
 
 ### Running and stoping it
 
@@ -68,7 +68,7 @@ electrum personal server and OpenVPN by issuing the following command:
 ./start.sh
 ```
 
-Note the everything the setup needs to store will be stored inside the volumes folder.
+Note the everything which needs to store will be stored inside the volumes folder.
 Exiting blockchain data can be copied into `volumes/bitcoind`.
 
 To stop everything cd to bitcoind_tor_eps_docker and issue the following command:

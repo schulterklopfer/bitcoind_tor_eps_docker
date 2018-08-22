@@ -60,7 +60,8 @@ The port needs to be 1194 and the type of the port must be UDP.
 If you want to make your full node accessible to other full nodes on the bitcoin
 network, you will need to do the same thing for the TCP port 8333.
 
-You don't have to do this, if you are running this docker-compose on a hosted server.
+You don't have to do this, if you are running this docker-compose on a hosted server
+unless it is hidden behind a firewall.
 
 ### Running and stoping it
 

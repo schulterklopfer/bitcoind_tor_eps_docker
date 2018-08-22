@@ -85,3 +85,10 @@ To stop everything cd to bitcoind_tor_eps_docker and issue the following command
 Thanks for reading. :-D
 
 *SKP*
+
+####TODOS
+
+* Write up more doc for OpenVPN clients
+* Write up more doc on how to connect electrum
+
+

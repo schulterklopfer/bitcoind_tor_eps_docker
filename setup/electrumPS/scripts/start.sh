@@ -1,6 +1,8 @@
 #!/bin/bash
 
-#!/bin/bash
+# This configuration script is based on the ones found in
+# this awesome project: https://github.com/rootzoll/raspiblitz
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
 RPCUSERFILE=/setup/data/rpcuser
@@ -26,7 +28,7 @@ if [ -f "$SETUP_STATE" ]; then
   setupState=$( cat $SETUP_STATE )
 fi
 
-if [ ${setupState} -eq 5 ]; then
+if [ ${setupState} -eq 4 ]; then
 
     # start setup
     BACKTITLE="Configure Bitcoind"
@@ -35,7 +37,7 @@ if [ ${setupState} -eq 5 ]; then
     OPTIONS+=("Generate config" "Generate config for electrum personal server")   
 
 
-elif [ ${setupState} -gt 5 ]; then
+elif [ ${setupState} -gt 4 ]; then
 
     # continue setup
     BACKTITLE="Configuration done"
@@ -107,7 +109,7 @@ case $CHOICE in
 
             rm /eps/config.cfg.bak
 
-            echo "6" > $SETUP_STATE
+            echo "5" > $SETUP_STATE
             
             echo "" && \
             echo "Press any key to return to menu" && \
@@ -118,7 +120,7 @@ case $CHOICE in
             ;;
         Restart)
             rm $XPUBFILE 2>/dev/null
-            echo "5" > $SETUP_STATE
+            echo "4" > $SETUP_STATE
             $DIR/start.sh
             #exit 1;
             ;;
